@@ -1,0 +1,18 @@
+{
+	"name": "atur-mbg",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@hyperz111/prettier-config": "^1.1.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"prettier": "^3.8.3",
+		"svelte": "^5.55.5",
+		"vite": "^8.0.12"
+	}
+}
