@@ -31,17 +31,15 @@
 									({numberFormatter.format(item.price)}, {item.serving.value}
 									{item.serving.unit}/porsi)
 								</label>
-								{#if selected[item.name]}
-									<span>
-										<input
-											class="bg-gray-400 px-2"
-											type="number"
-											id="{item.name}+total"
-											placeholder={item.serving.value}
-											bind:value={totals[item.name]} />
-										<label for="{item.name}+total">{item.serving.unit}</label>
-									</span>
-								{/if}
+								<span class={selected[item.name] ? "block" : "hidden"}>
+									<input
+										class="bg-gray-400 px-2"
+										type="number"
+										id="{item.name}+total"
+										placeholder={item.serving.value}
+										bind:value={totals[item.name]} />
+									<label for="{item.name}+total">{item.serving.unit}</label>
+								</span>
 							</div>
 						</li>
 					{/each}

@@ -1,5 +1,5 @@
 <script>
-	import { numberFormatter } from "../utils.js";
+	import { fixedNumber, numberFormatter } from "../utils.js";
 
 	let { data } = $props();
 </script>
@@ -27,13 +27,13 @@
 						{#each Object.values(info) as value, index}
 							<td>
 								{#if typeof value === "object"}
-									{value.value} {value.unit}
+									{fixedNumber(value.value)} {value.unit}
 								{:else if index === 1}
 									{numberFormatter.format(value)}
-								{:else if index === 3}
-									{value} kkal
+								{:else if index === 2}
+									{fixedNumber(value)} kkal
 								{:else}
-									{value} gram
+									{fixedNumber(value)} gram
 								{/if}
 							</td>
 						{/each}
@@ -42,15 +42,15 @@
 			</tbody>
 			<tfoot>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300">
-					<td colspan="2">Total</td>
+					<td colspan="2" class="font-bold">Total</td>
 					{#each Object.values(data.total) as value, index}
 						<td>
 							{#if index === 0}
 								{numberFormatter.format(value)}
 							{:else if index === 1}
-								{value} kkal
+								{fixedNumber(value)} kkal
 							{:else}
-								{value} gram
+								{fixedNumber(value)} gram
 							{/if}
 						</td>
 					{/each}
