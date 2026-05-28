@@ -1,7 +1,54 @@
 <script>
+	import foods from "../data/foods.json";
 	import { fixedNumber, numberFormatter } from "../utils.js";
 
-	let { data } = $props();
+	let { selected, totals } = $props();
+
+	let all = $derived.by(() => {
+		const result = {};
+
+		for (const category in foods) {
+			for (const food of foods[category]) {
+				if (selected[food.name]) {
+					result[food.name] = {
+						category,
+						serving: {
+							base: food.serving.value,
+							value: totals[food.name] ?? food.serving.value,
+							unit: food.serving.unit,
+						},
+						price: food.price,
+					};
+
+					for (const n in food.nutrition) {
+						result[food.name][n] = food.nutrition[n];
+					}
+				}
+			}
+		}
+
+		return result;
+	});
+	let acumulated = $derived.by(() => {
+		const result = {
+			price: 0,
+			calories: 0,
+			protein: 0,
+			carbs: 0,
+			fat: 0,
+		};
+
+		for (const food in all) {
+			const item = all[food];
+			const multiplier = item.serving.value / item.serving.base;
+
+			for (const property in result) {
+				result[property] += item[property] * multiplier;
+			}
+		}
+
+		return result;
+	});
 </script>
 
 <section>
@@ -12,7 +59,8 @@
 			<thead>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-400">
 					<th>Makanan</th>
-					<th>Jumlah</th>
+					<th>Kategori</th>
+					<th>Porsi</th>
 					<th>Harga</th>
 					<th>Kalori</th>
 					<th>Protein</th>
@@ -21,16 +69,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each Object.entries(data.foods) as [name, info]}
+				{#each Object.entries(all) as [name, info]}
 					<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-100">
 						<td>{name}</td>
-						{#each Object.values(info) as value, index}
+						{#each Object.entries(info) as [key, value]}
 							<td>
-								{#if typeof value === "object"}
+								{#if key === "category"}
+									{value}
+								{:else if key === "serving"}
 									{fixedNumber(value.value)} {value.unit}
-								{:else if index === 1}
+								{:else if key === "price"}
 									{numberFormatter.format(value)}
-								{:else if index === 2}
+								{:else if key === "calories"}
 									{fixedNumber(value)} kkal
 								{:else}
 									{fixedNumber(value)} gram
@@ -42,12 +92,12 @@
 			</tbody>
 			<tfoot>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300">
-					<td colspan="2" class="font-bold text-center">Total</td>
-					{#each Object.values(data.total) as value, index}
+					<td colspan="3" class="font-bold text-center">Total</td>
+					{#each Object.entries(acumulated) as [key, value]}
 						<td>
-							{#if index === 0}
+							{#if key === "price"}
 								{numberFormatter.format(value)}
-							{:else if index === 1}
+							{:else if key === "calories"}
 								{fixedNumber(value)} kkal
 							{:else}
 								{fixedNumber(value)} gram
