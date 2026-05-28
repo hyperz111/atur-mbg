@@ -20,6 +20,9 @@ importers:
       "@tailwindcss/vite":
         specifier: ^4.3.0
         version: 4.3.0(vite@8.0.14(jiti@2.7.0))
+      eruda:
+        specifier: ^3.4.3
+        version: 3.4.3
       prettier:
         specifier: ^3.8.3
         version: 3.8.3
@@ -369,6 +372,10 @@ packages:
     resolution:
       { integrity: sha512-xYcDWrpELkFzz9SpZ3PlI6Eu6eD93Yf0WLDRxikGhWJ3MAir2SNZTIVCVZqZ/NUyx8AdMc2gT9C0gPiw18kG+A== }
     engines: { node: ">=10.13.0" }
+
+  eruda@3.4.3:
+    resolution:
+      { integrity: sha512-J2TsF4dXSspOXev5bJ6mljv0dRrxj21wklrDzbvPmYaEmVoC+2psylyRi70nUPFh1mTQfIBsSusUtAMZtUN+/w== }
 
   esm-env@1.2.2:
     resolution:
@@ -880,6 +887,8 @@ snapshots:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.3
+
+  eruda@3.4.3: {}
 
   esm-env@1.2.2: {}
 

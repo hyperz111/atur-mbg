@@ -2,6 +2,10 @@
 	// Data makanan di-generate oleh AI (ChatGPT)
 	import foods from "./foods.json";
 
+	const categoryColors = {
+		karbohidrat: ["border-red-600", "bg-red-400"],
+	};
+
 	let selected = $state({});
 	let totals = $state({});
 
@@ -44,15 +48,15 @@
 	});
 </script>
 
-<header>
-	<h1>Atur MBG</h1>
-	<p>Alat untuk mengatur isi ompreng MBG kalian. Bisa dipakai untuk analisa.</p>
+<header class="text-center">
+	<h1 class="text-5xl font-extrabold">Atur MBG</h1>
+	<p class="text-gray-500">Alat untuk mengatur isi ompreng MBG kalian. Bisa dipakai untuk analisa.</p>
 </header>
 
 <main>
 	<section>
 		{#each Object.entries(foods) as [name, food]}
-			<div>
+			<article class="border-4 p-3 {categoryColors[name].join(' ')}">
 				<h2 class="uppercase">{name}</h2>
 				<ul>
 					{#each food as item (item.name)}
@@ -79,9 +83,8 @@
 						</li>
 					{/each}
 				</ul>
-			</div>
+			</article>
 		{/each}
 	</section>
-	<section>
-	</section>
+	<section></section>
 </main>
