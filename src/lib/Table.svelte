@@ -7,7 +7,7 @@
 <section>
 	<h2 class="text-4xl font-semibold my-2">Hasil</h2>
 
-	<div class="overflow-x-auto">
+	<div class="overflow-x-auto *:w-full">
 		<table class="border-collapse">
 			<thead>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-400">
@@ -42,7 +42,7 @@
 			</tbody>
 			<tfoot>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300">
-					<td colspan="2" class="font-bold">Total</td>
+					<td colspan="2" class="font-bold text-center">Total</td>
 					{#each Object.values(data.total) as value, index}
 						<td>
 							{#if index === 0}
