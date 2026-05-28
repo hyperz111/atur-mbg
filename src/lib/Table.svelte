@@ -10,8 +10,8 @@
 		for (const category in foods) {
 			for (const food of foods[category]) {
 				if (selected[food.name]) {
-					result[food.name] = {
-						category,
+					const key = `${food.name} (${category})`;
+					result[key] = {
 						serving: {
 							base: food.serving.value,
 							value: totals[food.name] ?? food.serving.value,
@@ -21,7 +21,7 @@
 					};
 
 					for (const n in food.nutrition) {
-						result[food.name][n] = food.nutrition[n];
+						result[key][n] = food.nutrition[n];
 					}
 				}
 			}
@@ -59,7 +59,6 @@
 			<thead>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-400">
 					<th>Makanan</th>
-					<th>Kategori</th>
 					<th>Porsi</th>
 					<th>Harga</th>
 					<th>Kalori</th>
@@ -74,10 +73,8 @@
 						<td>{name}</td>
 						{#each Object.entries(info) as [key, value]}
 							<td>
-								{#if key === "category"}
-									{value}
-								{:else if key === "serving"}
-									{fixedNumber(value.value)} {value.unit}
+								{#if key === "serving"}
+									{fixedNumber(value.value)}/{fixedNumber(value.base)} {value.unit}
 								{:else if key === "price"}
 									{numberFormatter.format(value)}
 								{:else if key === "calories"}
@@ -92,7 +89,7 @@
 			</tbody>
 			<tfoot>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300">
-					<td colspan="3" class="font-bold text-center">Total</td>
+					<td colspan="2" class="font-bold text-center">Total</td>
 					{#each Object.entries(acumulated) as [key, value]}
 						<td>
 							{#if key === "price"}

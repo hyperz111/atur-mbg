@@ -13,5 +13,5 @@
 
 <main class="grid grid-cols-1 gap-3">
 	<Table {selected} {totals} />
-	<Settings bind:selected bind:totals />
+	<Settings {selected} {totals} />
 </main>

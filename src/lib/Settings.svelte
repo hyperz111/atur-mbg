@@ -2,7 +2,7 @@
 	import foods from "../data/foods.json";
 	import { numberFormatter } from "../utils.js";
 
-	let { selected = $bindable({}), totals = $bindable({}) } = $props();
+	let { selected, totals } = $props();
 </script>
 
 <section class="">
