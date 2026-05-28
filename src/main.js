@@ -7,3 +7,5 @@ const app = mount(App, {
 });
 
 export default app;
+
+import("eruda").then(({ default: mod }) => mod.init());
