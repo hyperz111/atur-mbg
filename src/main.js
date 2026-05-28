@@ -6,6 +6,10 @@ const app = mount(App, {
 	target: document.getElementById("app"),
 });
 
-export default app;
+if (import.meta.env.DEV) {
+	await import("eruda").then(({ default: eruda }) => {
+		eruda.init();
+	});
+}
 
-import("eruda").then(({ default: mod }) => mod.init());
+export default app;
