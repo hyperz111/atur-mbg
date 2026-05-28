@@ -10,8 +10,8 @@
 		for (const category in foods) {
 			for (const food of foods[category]) {
 				if (selected[food.name]) {
-					const key = `${food.name} (${category})`;
-					result[key] = {
+					result[food.name] = {
+						category,
 						serving: {
 							base: food.serving.value,
 							value: totals[food.name] ?? food.serving.value,
@@ -21,7 +21,7 @@
 					};
 
 					for (const n in food.nutrition) {
-						result[key][n] = food.nutrition[n];
+						result[food.name][n] = food.nutrition[n];
 					}
 				}
 			}
@@ -70,19 +70,21 @@
 			<tbody>
 				{#each Object.entries(all) as [name, info]}
 					<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-100">
-						<td>{name}</td>
+						<td class="capitalize">{name} ({info.category})</td>
 						{#each Object.entries(info) as [key, value]}
-							<td>
-								{#if key === "serving"}
-									{fixedNumber(value.value)}/{fixedNumber(value.base)} {value.unit}
-								{:else if key === "price"}
-									{numberFormatter.format(value)}
-								{:else if key === "calories"}
-									{fixedNumber(value)} kkal
-								{:else}
-									{fixedNumber(value)} gram
-								{/if}
-							</td>
+							{#if key !== "category"}
+								<td>
+									{#if key === "serving"}
+										{fixedNumber(value.value)}/{fixedNumber(value.base)} {value.unit}
+									{:else if key === "price"}
+										{numberFormatter.format(value)}
+									{:else if key === "calories"}
+										{fixedNumber(value)} kkal
+									{:else}
+										{fixedNumber(value)} gram
+									{/if}
+								</td>
+							{/if}
 						{/each}
 					</tr>
 				{/each}
