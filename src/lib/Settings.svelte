@@ -28,12 +28,10 @@
 								<label for="{item.name}+checkbox">
 									{item.emoji}
 									{item.name}
-									({numberFormatter.format(item.price)}, {item.serving.value}
-									{item.serving.unit}/porsi)
 								</label>
 								<span class={selected[item.name] ? "block" : "hidden"}>
 									<input
-										class="bg-gray-400 px-2"
+										class="bg-gray-300 px-2 text-black"
 										type="number"
 										id="{item.name}+total"
 										placeholder={item.serving.value}

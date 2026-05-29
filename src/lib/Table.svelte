@@ -10,18 +10,19 @@
 		for (const category in foods) {
 			for (const food of foods[category]) {
 				if (selected[food.name]) {
+					const servingValue = totals[food.name] ?? food.serving.value;
+					const multiplier = servingValue / food.serving.value;
+
 					result[food.name] = {
-						category,
 						serving: {
-							base: food.serving.value,
-							value: totals[food.name] ?? food.serving.value,
+							value: servingValue,
 							unit: food.serving.unit,
 						},
-						price: food.price,
+						price: food.price * multiplier,
 					};
 
 					for (const n in food.nutrition) {
-						result[food.name][n] = food.nutrition[n];
+						result[food.name][n] = food.nutrition[n] * multiplier;
 					}
 				}
 			}
@@ -40,10 +41,9 @@
 
 		for (const food in all) {
 			const item = all[food];
-			const multiplier = item.serving.value / item.serving.base;
 
 			for (const property in result) {
-				result[property] += item[property] * multiplier;
+				result[property] += item[property];
 			}
 		}
 
@@ -70,28 +70,26 @@
 			<tbody>
 				{#each Object.entries(all) as [name, info]}
 					<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-100">
-						<td class="capitalize">{name} ({info.category})</td>
+						<td class="capitalize">{name}</td>
 						{#each Object.entries(info) as [key, value]}
-							{#if key !== "category"}
-								<td>
-									{#if key === "serving"}
-										{fixedNumber(value.value)}/{fixedNumber(value.base)} {value.unit}
-									{:else if key === "price"}
-										{numberFormatter.format(value)}
-									{:else if key === "calories"}
-										{fixedNumber(value)} kkal
-									{:else}
-										{fixedNumber(value)} gram
-									{/if}
-								</td>
-							{/if}
+							<td>
+								{#if key === "serving"}
+									{fixedNumber(value.value)} {value.unit}
+								{:else if key === "price"}
+									{numberFormatter.format(value)}
+								{:else if key === "calories"}
+									{fixedNumber(value)} kkal
+								{:else}
+									{fixedNumber(value)} gram
+								{/if}
+							</td>
 						{/each}
 					</tr>
 				{/each}
 			</tbody>
 			<tfoot>
-				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300">
-					<td colspan="2" class="font-bold text-center">Total</td>
+				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300 font-bold">
+					<td colspan="2" class="text-center">Total</td>
 					{#each Object.entries(acumulated) as [key, value]}
 						<td>
 							{#if key === "price"}
