@@ -25,19 +25,30 @@
 						<li class="flex items-start gap-2">
 							<input class="mt-1" type="checkbox" id="{item.name}+checkbox" bind:checked={selected[item.name]} />
 							<div>
-								<label for="{item.name}+checkbox">
-									{item.emoji}
-									{item.name}
-								</label>
-								<span class={selected[item.name] ? "block" : "hidden"}>
-									<input
-										class="bg-gray-300 px-2 text-black"
-										type="number"
-										id="{item.name}+total"
-										placeholder={item.serving.value}
-										bind:value={totals[item.name]} />
-									<label for="{item.name}+total">{item.serving.unit}</label>
+								<span class="flex items-center gap-2">
+									<label for="{item.name}+checkbox">
+										{item.emoji}
+										{item.name}
+									</label>
 								</span>
+								<ul class="text-sm mt-1 space-y-1 {selected[item.name] ? 'block' : 'hidden'}">
+									<li>
+										<b>Porsi:</b>
+										<input
+											class="bg-gray-300 px-2 text-black"
+											type="number"
+											placeholder={item.serving.value}
+											bind:value={totals[item.name]}
+											style="width: {Math.max(String(totals[item.name] || item.serving.value).length + 2, 4)}ch" />
+										/ {item.serving.value}
+										{item.serving.unit}
+									</li>
+									<li><b>Harga:</b> {numberFormatter.format(item.price)}</li>
+									<li><b>Kalori:</b> {item.nutrition.calories} kkal</li>
+									<li><b>Protein:</b> {item.nutrition.protein} gram</li>
+									<li><b>Karbohidrat:</b> {item.nutrition.carbs} gram</li>
+									<li><b>Lemak:</b> {item.nutrition.fat} gram</li>
+								</ul>
 							</div>
 						</li>
 					{/each}

@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      "@iconify/svelte":
+        specifier: ^5.2.1
+        version: 5.2.1(svelte@5.55.9)
       tailwindcss:
         specifier: ^4.3.0
         version: 4.3.0
@@ -51,6 +54,16 @@ packages:
       { integrity: sha512-ELAAo9G2Q3vOLfnq+ftIwxwZgIfeezEap8Jer6FkJeJtq6XWbHOepAAy3YGLRAZVWCDiEWZu7FClm6II1E0+Dw== }
     peerDependencies:
       prettier: ^3
+
+  "@iconify/svelte@5.2.1":
+    resolution:
+      { integrity: sha512-zHmsIPmnIhGd5gc95bNN5FL+GifwMZv7M2rlZEpa7IXYGFJm/XGHdWf6PWQa6OBoC+R69WyiPO9NAj5wjfjbow== }
+    peerDependencies:
+      svelte: ">5.0.0"
+
+  "@iconify/types@2.0.0":
+    resolution:
+      { integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg== }
 
   "@jridgewell/gen-mapping@0.3.13":
     resolution:
@@ -695,6 +708,13 @@ snapshots:
       prettier-plugin-svelte: 3.5.2(prettier@3.8.3)(svelte@5.55.9)
     transitivePeerDependencies:
       - svelte
+
+  "@iconify/svelte@5.2.1(svelte@5.55.9)":
+    dependencies:
+      "@iconify/types": 2.0.0
+      svelte: 5.55.9
+
+  "@iconify/types@2.0.0": {}
 
   "@jridgewell/gen-mapping@0.3.13":
     dependencies:

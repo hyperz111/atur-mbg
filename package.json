@@ -11,6 +11,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@iconify/svelte": "^5.2.1",
 		"tailwindcss": "^4.3.0"
 	},
 	"devDependencies": {
