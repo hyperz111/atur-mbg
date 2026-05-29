@@ -11,13 +11,11 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 		{#each Object.entries(foods) as [name, food]}
 			<article
-				class="border-4 p-3 text-white rounded-xl {(
-					(name === 'karbohidrat' && ['border-blue-600', 'bg-blue-400']) ||
-					(name === 'protein' && ['border-orange-600', 'bg-orange-400']) ||
-					(name === 'buah' && ['border-red-600', 'bg-red-400']) ||
-					(name === 'sayur' && ['border-green-600', 'bg-green-400']) ||
-					[]
-				).join(' ')}">
+				class="border-2 p-3 text-gray-700 rounded-xl border-neutral-300 {(name === 'karbohidrat' && 'bg-sky-100') ||
+					(name === 'protein' && 'bg-amber-100') ||
+					(name === 'sayur' && 'bg-green-100') ||
+					(name === 'buah' && 'bg-rose-100') ||
+					''}">
 				<h3 class="uppercase font-semibold text-2xl">{name}</h3>
 
 				<ul>
@@ -35,7 +33,7 @@
 									<li>
 										<b>Porsi:</b>
 										<input
-											class="bg-gray-300 px-2 text-black"
+											class="bg-gray-400 px-2 text-black"
 											type="number"
 											placeholder={item.serving.value}
 											bind:value={totals[item.name]}

@@ -59,7 +59,7 @@
 	<div class="overflow-x-auto *:w-full">
 		<table class="border-collapse">
 			<thead>
-				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-400">
+				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300">
 					<th>Makanan</th>
 					<th>Porsi</th>
 					<th>Harga</th>
@@ -83,7 +83,7 @@
 				{/each}
 			</tbody>
 			<tfoot>
-				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300 font-bold">
+				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-200 font-bold">
 					<td colspan="2" class="text-center">Total</td>
 					<td>{currencyFormatter(acumulated.price)}</td>
 					<td>{fixedNumber(acumulated.calories)} kkal</td>

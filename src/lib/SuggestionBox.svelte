@@ -44,7 +44,7 @@
 </script>
 
 {#if results.length > 0}
-	<section class="bg-zinc-600 text-white p-2 mt-2">
+	<section class="bg-zinc-400 text-white p-2 mt-2">
 		{#each results as item (item.code)}
 			<p>{iconMappings[item.type]} {item.message}</p>
 		{/each}
