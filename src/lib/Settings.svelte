@@ -33,7 +33,7 @@
 									<li>
 										<b>Porsi:</b>
 										<input
-											class="bg-gray-300 px-2 text-black "
+											class="bg-gray-300 px-2 text-black"
 											type="number"
 											placeholder={item.serving.value}
 											bind:value={totals[item.name]}
