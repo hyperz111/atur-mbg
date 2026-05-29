@@ -1,4 +1,5 @@
 <script>
+	import SuggestionBox from "./SuggestionBox.svelte";
 	import foods from "../data/foods.json";
 	import { fixedNumber, currencyFormatter } from "../utils.js";
 
@@ -71,38 +72,27 @@
 				{#each Object.entries(all) as [name, info]}
 					<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-100">
 						<td class="capitalize">{name}</td>
-						{#each Object.entries(info) as [key, value]}
-							<td>
-								{#if key === "serving"}
-									{fixedNumber(value.value)} {value.unit}
-								{:else if key === "price"}
-									{currencyFormatter(value)}
-								{:else if key === "calories"}
-									{fixedNumber(value)} kkal
-								{:else}
-									{fixedNumber(value)} gram
-								{/if}
-							</td>
-						{/each}
+						<td>{fixedNumber(info.serving.value)} {info.serving.unit}</td>
+						<td>{currencyFormatter(info.price)}</td>
+						<td>{fixedNumber(info.calories)} kkal</td>
+						<td>{fixedNumber(info.protein)} gram</td>
+						<td>{fixedNumber(info.carbs)} gram</td>
+						<td>{fixedNumber(info.fat)} gram</td>
 					</tr>
 				{/each}
 			</tbody>
 			<tfoot>
 				<tr class="*:p-2 *:border *:border-gray-600 bg-cyan-300 font-bold">
 					<td colspan="2" class="text-center">Total</td>
-					{#each Object.entries(acumulated) as [key, value]}
-						<td>
-							{#if key === "price"}
-								{currencyFormatter(value)}
-							{:else if key === "calories"}
-								{fixedNumber(value)} kkal
-							{:else}
-								{fixedNumber(value)} gram
-							{/if}
-						</td>
-					{/each}
+					<td>{currencyFormatter(acumulated.price)}</td>
+					<td>{fixedNumber(acumulated.calories)} kkal</td>
+					<td>{fixedNumber(acumulated.protein)} gram</td>
+					<td>{fixedNumber(acumulated.carbs)} gram</td>
+					<td>{fixedNumber(acumulated.fat)} gram</td>
 				</tr>
 			</tfoot>
 		</table>
 	</div>
+
+	<SuggestionBox {all} {acumulated} />
 </section>
