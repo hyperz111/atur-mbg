@@ -6,7 +6,7 @@
 </script>
 
 <section class="">
-	<h2 class="text-4xl font-semibold my-2">Pengaturan</h2>
+	<h2 class="text-4xl font-semibold my-2 text-center">Pengaturan</h2>
 
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 		{#each Object.entries(foods) as [name, food]}

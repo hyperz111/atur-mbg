@@ -54,7 +54,7 @@
 </script>
 
 <section>
-	<h2 class="text-4xl font-semibold my-2">Hasil</h2>
+	<h2 class="text-4xl font-semibold my-2 text-center">Hasil</h2>
 
 	<div class="overflow-x-auto *:w-full">
 		<table class="border-collapse">
