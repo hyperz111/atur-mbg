@@ -15,6 +15,7 @@
 					const multiplier = servingValue / food.serving.value;
 
 					result[food.name] = {
+						category,
 						serving: {
 							value: servingValue,
 							unit: food.serving.unit,

@@ -1,0 +1,22 @@
+{
+	"NO_CARB": {
+		"type": "warning",
+		"message": "Belum ada sumber karbohidrat."
+	},
+	"NO_PROTEIN": {
+		"type": "warning",
+		"message": "Belum ada sumber protein."
+	},
+	"NO_VEGETABLE": {
+		"type": "warning",
+		"message": "Belum ada sayuran."
+	},
+	"NO_FRUIT": {
+		"type": "warning",
+		"message": "Belum ada buah."
+	},
+	"BUDGET_HIGH": {
+		"type": "warning",
+		"message": "Harga per ompreng melebihi target anggaran."
+	}
+}
