@@ -1,6 +1,6 @@
 <script>
 	import foods from "../data/foods.json";
-	import { fixedNumber, numberFormatter } from "../utils.js";
+	import { fixedNumber, currencyFormatter } from "../utils.js";
 
 	let { selected, totals } = $props();
 
@@ -76,7 +76,7 @@
 								{#if key === "serving"}
 									{fixedNumber(value.value)} {value.unit}
 								{:else if key === "price"}
-									{numberFormatter.format(value)}
+									{currencyFormatter(value)}
 								{:else if key === "calories"}
 									{fixedNumber(value)} kkal
 								{:else}
@@ -93,7 +93,7 @@
 					{#each Object.entries(acumulated) as [key, value]}
 						<td>
 							{#if key === "price"}
-								{numberFormatter.format(value)}
+								{currencyFormatter(value)}
 							{:else if key === "calories"}
 								{fixedNumber(value)} kkal
 							{:else}

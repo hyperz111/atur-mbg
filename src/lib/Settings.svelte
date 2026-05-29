@@ -1,6 +1,6 @@
 <script>
 	import foods from "../data/foods.json";
-	import { numberFormatter } from "../utils.js";
+	import { currencyFormatter } from "../utils.js";
 
 	let { selected, totals } = $props();
 </script>
@@ -43,7 +43,7 @@
 										/ {item.serving.value}
 										{item.serving.unit}
 									</li>
-									<li><b>Harga:</b> {numberFormatter.format(item.price)}</li>
+									<li><b>Harga:</b> {currencyFormatter(item.price)}</li>
 									<li><b>Kalori:</b> {item.nutrition.calories} kkal</li>
 									<li><b>Protein:</b> {item.nutrition.protein} gram</li>
 									<li><b>Karbohidrat:</b> {item.nutrition.carbs} gram</li>
